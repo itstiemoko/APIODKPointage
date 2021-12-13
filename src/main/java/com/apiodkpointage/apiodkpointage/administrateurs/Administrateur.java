@@ -47,6 +47,9 @@ public class Administrateur
     @Column(nullable = false)
     private String motDePass;
 
+    @Column(nullable = false)
+    private String imageURL;
+
     private LocalDate dateCreation = LocalDate.now();
     private LocalDate dateModification;
 
@@ -89,7 +92,7 @@ public class Administrateur
     //Constructeur par défaut
     public Administrateur(){}
 
-    public Administrateur(String nom, String prenom, String adresse, String genre, int telephone, String email, String login, String motDePass, LocalDate dateCreation, LocalDate dateModification, Etat etat) {
+    public Administrateur(String nom, String prenom, String adresse, String genre, int telephone, String email, String login, String motDePass, LocalDate dateCreation, LocalDate dateModification, Etat etat, String imageURL) {
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
@@ -101,6 +104,7 @@ public class Administrateur
         this.dateCreation = dateCreation;
         this.dateModification = dateModification;
         this.etat = etat;
+        this.imageURL = imageURL;
     }
 
     /*____________________Setters et Getters_____________________________*/
@@ -230,5 +234,13 @@ public class Administrateur
 
     public void setLogs(List<Log> logs) {
         this.logs = logs;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 }

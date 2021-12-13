@@ -48,7 +48,7 @@ public class ApiodkpointageApplication implements CommandLineRunner {
 
 
 		//Add a superAdmin
-		Administrateur superAdmin = new Administrateur("MK", "sm", "Bamako", "masculin", 90302635, "mk@gmail.com", "mk", "qwerty", LocalDate.now(), null, Etat.ACTIVER);
+		Administrateur superAdmin = new Administrateur("MK", "sm", "Bamako", "masculin", 90302635, "mk@gmail.com", "mk", "qwerty", LocalDate.now(), null, Etat.ACTIVER,"http://localhost/images/samassekou.png");
 		//Assign profile to admin
 		superAdmin.setProfile(profile);
 		superAdmin.setGenre("HOMME");

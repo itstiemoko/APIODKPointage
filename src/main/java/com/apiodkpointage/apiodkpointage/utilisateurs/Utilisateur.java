@@ -60,6 +60,9 @@ public abstract class Utilisateur
     @Column(nullable = false)
     private Etat etat;
 
+    @Column(nullable = false)
+    private String imageURL;
+
     @ManyToMany(mappedBy = "utilisateurs")
     private List<Administrateur> administrateurs;
 
@@ -97,7 +100,7 @@ public abstract class Utilisateur
     public Utilisateur() {
     }
 
-    public Utilisateur(String nom, String prenom, String adresse, int telephone, String email, String login, String motDePass, Etat etat) {
+    public Utilisateur(String nom, String prenom, String adresse, int telephone, String email, String login, String motDePass, Etat etat, String imageURL) {
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
@@ -106,6 +109,7 @@ public abstract class Utilisateur
         this.login = login;
         this.motDePass = motDePass;
         this.etat = etat;
+        this.imageURL = imageURL;
 
     }
 
@@ -188,6 +192,14 @@ public abstract class Utilisateur
 
     public void setEtat(Etat etat) {
         this.etat = etat;
+    }
+
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
     }
 
     public List<Pointage> getPointages() {
