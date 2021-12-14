@@ -60,6 +60,8 @@ public abstract class Utilisateur
     @Column(nullable = false)
     private Etat etat;
 
+    private boolean supprimer = false;
+
     @ManyToMany(mappedBy = "utilisateurs")
     private List<Administrateur> administrateurs;
 
@@ -97,7 +99,7 @@ public abstract class Utilisateur
     public Utilisateur() {
     }
 
-    public Utilisateur(String nom, String prenom, String adresse, int telephone, String email, String login, String motDePass, Etat etat) {
+    public Utilisateur(String nom, String prenom, String adresse, int telephone, String email, String login, String motDePass, Etat etat, boolean supprimer ) {
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
@@ -106,6 +108,7 @@ public abstract class Utilisateur
         this.login = login;
         this.motDePass = motDePass;
         this.etat = etat;
+        this.supprimer = supprimer;
 
     }
 
@@ -190,6 +193,12 @@ public abstract class Utilisateur
         this.etat = etat;
     }
 
+    public  boolean getSupprimer(){
+        return supprimer;
+    }
+    public void setSupprimer(boolean supprimer){
+        this.supprimer = supprimer;
+    }
     public List<Pointage> getPointages() {
         return pointages;
     }

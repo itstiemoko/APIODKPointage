@@ -32,10 +32,10 @@ public class ApiodkpointageApplication implements CommandLineRunner {
 	GroupeRepository groupeRepository;
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(ApiodkpointageApplication.class, args);
 	}
 
-	
 	public void run(String... args) throws Exception {
 		//Add SuperAdmin profile
 		Profile profile = new Profile(Libelle.SUPERADMIN, "Super Administrateur du système !");
@@ -48,7 +48,7 @@ public class ApiodkpointageApplication implements CommandLineRunner {
 
 
 		//Add a superAdmin
-		Administrateur superAdmin = new Administrateur("MK", "sm", "Bamako", "masculin", 90302635, "mk@gmail.com", "mk", "qwerty", LocalDate.now(), null, Etat.ACTIVER);
+		Administrateur superAdmin = new Administrateur("MK", "sm", "Bamako", "masculin", 90302635, "mk@gmail.com", "mk", "qwerty", LocalDate.now(), null, Etat.ACTIVER, false);
 		//Assign profile to admin
 		superAdmin.setProfile(profile);
 		superAdmin.setGenre("HOMME");

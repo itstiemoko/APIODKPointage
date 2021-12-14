@@ -18,7 +18,7 @@ public class Formateur extends Utilisateur
     }
 
     public Formateur(String nom, String prenom, String adresse, int telephone, String email, String login, String motDePass, Etat etat, Long id) {
-        super(nom, prenom, adresse, telephone, email, login, motDePass, etat);
+        super(nom, prenom, adresse, telephone, email, login, motDePass, etat, false);
         this.id = id;
     }
 

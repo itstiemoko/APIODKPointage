@@ -10,6 +10,7 @@ public interface AdministrateurService {
     String ajouterAdmin(Administrateur administrateur, Long idSuperAdmin);
     List<Administrateur> afficherListAdmin();
     String supprimerAdmin(Long id, Long idSuperAdmin);
+    String restoreAdmin(Long id, Long idSupperAdmin);
     Administrateur modifierAdmin(Administrateur administrateur, Long id, Long idSuperAdmin );
     Administrateur afficherAdminById(Long id);
     String modifierPassword(Long id, String nouveauPassword);

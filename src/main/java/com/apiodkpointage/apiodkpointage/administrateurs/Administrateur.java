@@ -53,6 +53,8 @@ public class Administrateur
     @Column(nullable = false)
     private Etat etat;
 
+    private Boolean supprimer = false;
+
     @ManyToOne
     @JoinColumn(nullable = false)
     private Profile profile;
@@ -89,7 +91,7 @@ public class Administrateur
     //Constructeur par défaut
     public Administrateur(){}
 
-    public Administrateur(String nom, String prenom, String adresse, String genre, int telephone, String email, String login, String motDePass, LocalDate dateCreation, LocalDate dateModification, Etat etat) {
+    public Administrateur(String nom, String prenom, String adresse, String genre, int telephone, String email, String login, String motDePass, LocalDate dateCreation, LocalDate dateModification, Etat etat, boolean supprimer) {
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
@@ -101,14 +103,18 @@ public class Administrateur
         this.dateCreation = dateCreation;
         this.dateModification = dateModification;
         this.etat = etat;
+        this.supprimer = supprimer;
+
     }
 
     /*____________________Setters et Getters_____________________________*/
     public Long getId() {
+
         return id;
     }
 
     public void setId(Long id) {
+
         this.id = id;
     }
 
@@ -198,6 +204,12 @@ public class Administrateur
 
     public void setEtat(Etat etat) {
         this.etat = etat;
+    }
+    public boolean getSupprimer(){
+        return supprimer;
+    }
+    public void setSupprimer(boolean supprimer){
+        this.supprimer = supprimer;
     }
 
     public List<Utilisateur> getUtilisateurs() {

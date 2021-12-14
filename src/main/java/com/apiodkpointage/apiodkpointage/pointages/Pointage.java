@@ -2,6 +2,7 @@ package com.apiodkpointage.apiodkpointage.pointages;
 
 import com.apiodkpointage.apiodkpointage.administrateurs.Administrateur;
 import com.apiodkpointage.apiodkpointage.utilisateurs.Utilisateur;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -38,7 +39,7 @@ public class Pointage
     public void setUtilisateur(Utilisateur utilisateur) {
         this.utilisateur = utilisateur;
     }
-
+    @JsonIgnore
     @ManyToMany(mappedBy = "pointages")
     public List<Administrateur> administrateurs;
 

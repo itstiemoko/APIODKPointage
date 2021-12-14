@@ -74,8 +74,17 @@ public class UtilisateursServiceImpl implements UtilisateursServices{
         Administrateur administrateur= administrateurRepository.findById(idAdmin).get();
         Utilisateur utilisateur=utilisateursRepository.findById(id).get();
         //utilisateursRepository.deleteById(id);
+        utilisateur.setSupprimer(true);
         utilisateur.setEtat(Etat.DESACTIVER);
         logServiceImp.addLogAdmin(administrateur, "Suppression de l'utilisateur "+utilisateur.getNom()+ " "+utilisateur.getPrenom() +" par Admin  "+ administrateur.getNom()+ " "+ administrateur.getPrenom() );
+    }
+    @Override
+    public void restoreUtilisateur(Long id, Long idAdmin) {
+        Administrateur administrateur= administrateurRepository.findById(idAdmin).get();
+        Utilisateur utilisateur=utilisateursRepository.findById(id).get();
+        utilisateur.setSupprimer(false);
+        utilisateur.setEtat(Etat.ACTIVER);
+        logServiceImp.addLogAdmin(administrateur, "Restauration de l'utilisateur "+utilisateur.getNom()+ " "+utilisateur.getPrenom() +" par Admin  "+ administrateur.getNom()+ " "+ administrateur.getPrenom() );
     }
 
     @Override
@@ -106,7 +115,7 @@ public class UtilisateursServiceImpl implements UtilisateursServices{
             return null;
         }
 
-        if (connexion.get().getEtat() == Etat.DESACTIVER){
+        if (connexion.get().getEtat() == Etat.DESACTIVER || connexion.get().getSupprimer()){
             throw new IllegalStateException("Votre compte utilisateur est désactivé");
         }
 

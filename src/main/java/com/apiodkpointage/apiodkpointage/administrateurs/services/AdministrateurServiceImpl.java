@@ -57,10 +57,21 @@ public class AdministrateurServiceImpl implements AdministrateurService{
         Administrateur superAdmin= administrateurRepository.findById(idSuperAdmin).get();
         Administrateur administrateur = administrateurRepository.findById(id).get();
 
+        administrateur.setSupprimer(true);
         administrateur.setEtat(Etat.DESACTIVER);
         logServiceImp.addLogAdmin(superAdmin, "Suppression de l'Admin "+administrateur.getPrenom()+" "+administrateur.getNom()+" par "+superAdmin.getPrenom()+" "+superAdmin.getNom());
 
         return "Vous avez supprimé l'admin "+administrateur.getPrenom()+" "+administrateur.getNom();
+    }
+    @Override
+    public  String restoreAdmin(Long id, Long idSuperAdmin){
+        Administrateur superAdmin = administrateurRepository.findById(idSuperAdmin).get();
+        Administrateur administrateur = administrateurRepository.findById(id).get();
+
+        administrateur.setSupprimer(false);
+        administrateur.setEtat(Etat.ACTIVER);
+        logServiceImp.addLogAdmin(superAdmin, "Restauration de l'admin" + administrateur.getPrenom() + " " + administrateur.getNom() + "par" +superAdmin.getPrenom() + " " + superAdmin.getNom());
+        return "Vous avez supprimé l'admin " + administrateur.getPrenom() + " " + administrateur.getNom();
     }
 
     @Override
@@ -106,7 +117,7 @@ public class AdministrateurServiceImpl implements AdministrateurService{
             return null;
         }
 
-        if(optionalAdministrateur.get().getEtat() == Etat.DESACTIVER)
+        if(optionalAdministrateur.get().getSupprimer())
         {
             throw new IllegalStateException("Votre compte administrateur est désactivé !");
         }

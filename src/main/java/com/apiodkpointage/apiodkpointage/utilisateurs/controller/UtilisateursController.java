@@ -45,6 +45,11 @@ public  class UtilisateursController {
     {
         utilisateursService.supprimer_utilisateur(id, idAdmin);
     }
+    @DeleteMapping("restoreUtilisateur/{id}&{idAdmin}")
+    public void restoreUtilisateur(@PathVariable("id") Long id, @PathVariable("idAdmin") Long idAdmin)
+    {
+        utilisateursService.restoreUtilisateur(id, idAdmin);
+    }
     @PutMapping("/modifierMotDePass/{id}")
     public String modifierAdminPassword(@PathVariable("id") Long id, @RequestParam String nouveauPassword)
     {

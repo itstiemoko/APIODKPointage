@@ -35,6 +35,11 @@ public class AdminController {
         return administrateurServiceImpl.supprimerAdmin(id, idSuperAdmin);
     }
 
+    @DeleteMapping("/restoreAdmin/{id}&{idSuperAdmin}")
+    public  String restoreAdmin(@PathVariable("id") Long id, @PathVariable("idSuperAdmin") Long idSuperAdmin){
+        return administrateurServiceImpl.restoreAdmin(id, idSuperAdmin);
+    }
+
     @PutMapping("/modifierAdmin/{id}&{idSuperAdmin}")
     public Administrateur modifierAdmin(@RequestBody Administrateur administrateur, @PathVariable("id") Long id, @PathVariable("idSuperAdmin") Long idSuperAdmin)
     {

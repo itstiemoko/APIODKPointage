@@ -26,7 +26,7 @@ public class Apprenant extends Utilisateur
     }
 
     public Apprenant(String nom, String prenom, String adresse, int telephone, String email, String login, String motDePass, Etat etat, Long id) {
-        super(nom, prenom, adresse, telephone, email, login, motDePass, etat);
+        super(nom, prenom, adresse, telephone, email, login, motDePass, etat, false);
         this.id = id;
     }
 

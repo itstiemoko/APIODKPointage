@@ -9,6 +9,8 @@ public interface UtilisateursServices {
     public String ajout_utilisateurs(Utilisateur utilisateur, Long idAdmin);
     public Utilisateur modifier_utilisateur(Utilisateur utilisateur, Long id, Long idAmin);
     public void supprimer_utilisateur(Long id, Long idAdmin);
+    public void restoreUtilisateur(Long id, Long idAdmin);
+
     List<Utilisateur> afficher_utilisateur();
     public Utilisateur afficher_par_id(Long id);
     String modifierPassword(Long id, String nouveauPassword);

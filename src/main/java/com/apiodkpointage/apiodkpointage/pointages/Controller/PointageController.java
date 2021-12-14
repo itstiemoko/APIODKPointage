@@ -28,7 +28,7 @@ public class PointageController {
         return pointageservice.afficherPointageById(id);
     }
 
-    @GetMapping("affichePointageByUser")
+    @PostMapping("affichePointageByUser")
     List<Pointage> afficheUser(@RequestBody Utilisateur utilisateur){
         return pointageservice.afficherPointByUser(utilisateur);
     }
