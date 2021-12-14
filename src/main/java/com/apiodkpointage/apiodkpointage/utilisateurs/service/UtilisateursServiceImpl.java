@@ -41,8 +41,14 @@ public class UtilisateursServiceImpl implements UtilisateursServices{
         Optional<Utilisateur> userlogin = utilisateursRepository.findByLogin(utilisateur.getLogin());
         Optional<Utilisateur> useremail = utilisateursRepository.findByEmail(utilisateur.getEmail());
 
-        if (usertel.isPresent() || useremail.isPresent() || userlogin.isPresent()){
-            throw new IllegalStateException("Email, Telephone ou Login existe dèja ");
+        if (useremail.isPresent()){
+            return "email";
+        }
+        if (usertel.isPresent()){
+            return "telephone";
+        }
+        if(userlogin.isPresent()){
+            return "login";
         }
 
         utilisateursRepository.save(utilisateur);

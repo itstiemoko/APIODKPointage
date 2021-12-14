@@ -9,14 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PromotionServiceImp implements PromotionService {
     @Autowired
     PromotionRepository promotionRepository;
 
-
-    Promotion promotion;
     @Autowired
     LogServiceImp logServiceImp;
     @Autowired
@@ -27,33 +26,20 @@ public class PromotionServiceImp implements PromotionService {
         Administrateur administrateur= administrateurRepository.findById(idAdmin).get();
         int dateDebut = promotion.getDateDebut().getYear();
         promotion.setAnnee(dateDebut);
-        int debutMonth = promotion.getDateDebut().getMonthValue();
+        int totalApprenant = promotion.getNombreFemmes()+ promotion.getNombreHommes();
+        promotion.setTotalApprenants(totalApprenant);
 
-        int dateFin = promotion.getDateFin().getYear();
-        int finMonth = promotion.getDateFin().getMonthValue();
+        Optional<Promotion> isPromotionNameExist = promotionRepository.findByNom(promotion.getNom());
 
-        int heureDebut = promotion.getHoraireDebutJournee().getHour();
-        int heureFin = promotion.getHoraireFinJournee().getHour();
+        if(isPromotionNameExist.isPresent())
+        {
+            return "nom";
+        }
 
-        if (dateFin < dateDebut){
-            return "La date de début doit être inférieur à la date de fin";
-        }
-        else if(heureFin < heureDebut)
-        {
-            return "L'heure de début doit être inférieur à l'heure de fin";
-        }
-        else if(finMonth <= debutMonth)
-        {
-            return "La date de début doit être inférieur à la date de fin";
-        }
-        else
-        {
-            int totalApprenant = promotion.getNombreFemmes()+ promotion.getNombreHommes();
-            promotion.setTotalApprenants(totalApprenant);
-            logServiceImp.addLogAdmin(administrateur,"L'administrateur "+ administrateur.getPrenom()+ " "+administrateur.getNom()+ " a ajouté la promotion " +promotion.getNom());
-            promotionRepository.save(promotion);
-            return " Promotion ajoutée avec succès";
-        }
+
+        logServiceImp.addLogAdmin(administrateur,"L'administrateur "+ administrateur.getPrenom()+ " "+administrateur.getNom()+ " a ajouté la promotion " +promotion.getNom());
+        promotionRepository.save(promotion);
+        return " Promotion ajoutée avec succès";
     }
 
     @Override

@@ -34,9 +34,14 @@ public class AdministrateurServiceImpl implements AdministrateurService{
         Optional<Administrateur> adminlogin= administrateurRepository.findByLogin(administrateur.getLogin());
 
 
-        if (admintel.isPresent() || adminemail.isPresent() || adminlogin.isPresent()){
-            throw new IllegalStateException("Email, telephone ou login existe dèja ");
-
+        if (adminemail.isPresent()){
+            return "email";
+        }
+        if (admintel.isPresent()){
+            return "telephone";
+        }
+        if(adminlogin.isPresent()){
+            return "login";
         }
 
         administrateurRepository.save(administrateur);
