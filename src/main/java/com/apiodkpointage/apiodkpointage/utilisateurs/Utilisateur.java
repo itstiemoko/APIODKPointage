@@ -60,7 +60,12 @@ public abstract class Utilisateur
     @Column(nullable = false)
     private Etat etat;
 
+<<<<<<< HEAD
     private boolean supprimer = false;
+=======
+    @Column(nullable = false)
+    private String imageURL;
+>>>>>>> e7fc39ee8da76abc8c14163571d0953d514d2f33
 
     @ManyToMany(mappedBy = "utilisateurs")
     private List<Administrateur> administrateurs;
@@ -99,7 +104,11 @@ public abstract class Utilisateur
     public Utilisateur() {
     }
 
+<<<<<<< HEAD
     public Utilisateur(String nom, String prenom, String adresse, int telephone, String email, String login, String motDePass, Etat etat, boolean supprimer ) {
+=======
+    public Utilisateur(String nom, String prenom, String adresse, int telephone, String email, String login, String motDePass, Etat etat, String imageURL) {
+>>>>>>> e7fc39ee8da76abc8c14163571d0953d514d2f33
         this.nom = nom;
         this.prenom = prenom;
         this.adresse = adresse;
@@ -108,7 +117,11 @@ public abstract class Utilisateur
         this.login = login;
         this.motDePass = motDePass;
         this.etat = etat;
+<<<<<<< HEAD
         this.supprimer = supprimer;
+=======
+        this.imageURL = imageURL;
+>>>>>>> e7fc39ee8da76abc8c14163571d0953d514d2f33
 
     }
 
@@ -193,12 +206,23 @@ public abstract class Utilisateur
         this.etat = etat;
     }
 
+<<<<<<< HEAD
     public  boolean getSupprimer(){
         return supprimer;
     }
     public void setSupprimer(boolean supprimer){
         this.supprimer = supprimer;
     }
+=======
+    public String getImageURL() {
+        return imageURL;
+    }
+
+    public void setImageURL(String imageURL) {
+        this.imageURL = imageURL;
+    }
+
+>>>>>>> e7fc39ee8da76abc8c14163571d0953d514d2f33
     public List<Pointage> getPointages() {
         return pointages;
     }

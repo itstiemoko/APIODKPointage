@@ -25,8 +25,13 @@ public class Apprenant extends Utilisateur
     public Apprenant() {
     }
 
+<<<<<<< HEAD
     public Apprenant(String nom, String prenom, String adresse, int telephone, String email, String login, String motDePass, Etat etat, Long id) {
         super(nom, prenom, adresse, telephone, email, login, motDePass, etat, false);
+=======
+    public Apprenant(String nom, String prenom, String adresse, int telephone, String email, String login, String motDePass, Etat etat, Long id, String imageURL) {
+        super(nom, prenom, adresse, telephone, email, login, motDePass, etat, imageURL);
+>>>>>>> e7fc39ee8da76abc8c14163571d0953d514d2f33
         this.id = id;
     }
 

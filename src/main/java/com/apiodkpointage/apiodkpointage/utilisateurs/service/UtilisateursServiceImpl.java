@@ -42,13 +42,13 @@ public class UtilisateursServiceImpl implements UtilisateursServices{
         Optional<Utilisateur> useremail = utilisateursRepository.findByEmail(utilisateur.getEmail());
 
         if (usertel.isPresent() || useremail.isPresent() || userlogin.isPresent()){
-            throw new IllegalStateException("cet email ou telephone ou login existe dèja ");
+            throw new IllegalStateException("Email, Telephone ou Login existe dèja ");
         }
 
         utilisateursRepository.save(utilisateur);
-        logServiceImp.addLogAdmin(administrateur, "ajout de l'utilisateur "+ utilisateur.getPrenom()+" "+ utilisateur.getNom());
+        logServiceImp.addLogAdmin(administrateur, administrateur.getPrenom()+ " "+administrateur.getNom()+ " a ajouté l'utilisateur "+ utilisateur.getPrenom()+" "+ utilisateur.getNom());
 
-        return "utilisateur "+utilisateur.getPrenom()+" "+utilisateur.getNom()+" ajouté avec succès";
+        return "Utilisateur "+utilisateur.getPrenom()+" "+utilisateur.getNom()+" ajouté avec succès";
     }
 
     @Override
@@ -64,7 +64,7 @@ public class UtilisateursServiceImpl implements UtilisateursServices{
        modifier.setMotDePass(utilisateur.getMotDePass());
        modifier.setTelephone(utilisateur.getTelephone());
        modifier.setDateModification();
-       logServiceImp.addLogAdmin(administrateur, "Modfication de l'utilisateur "+ utilisateur.getPrenom()+" "+ utilisateur.getNom());
+       logServiceImp.addLogAdmin(administrateur, administrateur.getPrenom()+ " "+administrateur.getNom()+ " a modifié l'utilisateur "+ utilisateur.getPrenom()+" "+ utilisateur.getNom());
 
         return utilisateursRepository.save(modifier);
     }
@@ -76,7 +76,7 @@ public class UtilisateursServiceImpl implements UtilisateursServices{
         //utilisateursRepository.deleteById(id);
         utilisateur.setSupprimer(true);
         utilisateur.setEtat(Etat.DESACTIVER);
-        logServiceImp.addLogAdmin(administrateur, "Suppression de l'utilisateur "+utilisateur.getNom()+ " "+utilisateur.getPrenom() +" par Admin  "+ administrateur.getNom()+ " "+ administrateur.getPrenom() );
+        logServiceImp.addLogAdmin(administrateur, "Suppression de l'utilisateur "+utilisateur.getNom()+ " "+utilisateur.getPrenom() +" par administrateur  "+ administrateur.getNom()+ " "+ administrateur.getPrenom() );
     }
     @Override
     public void restoreUtilisateur(Long id, Long idAdmin) {
@@ -101,7 +101,7 @@ public class UtilisateursServiceImpl implements UtilisateursServices{
     public String modifierPassword(Long id, String nouveauPassword) {
         Utilisateur utilisateurExistant = utilisateursRepository.findById(id).get();
         utilisateurExistant.setMotDePass(nouveauPassword);
-        logServiceImp.addLog(utilisateurExistant, "Modification du mot de passe pour l'admin "+utilisateurExistant.getPrenom()+" "+utilisateurExistant.getNom());
+        logServiceImp.addLog(utilisateurExistant, utilisateurExistant.getPrenom()+ " "+utilisateurExistant.getNom()+ " a modifié son mot de passe ");
 
         return "Mot de passe modifié avec succès !";
     }

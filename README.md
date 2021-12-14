@@ -16,8 +16,9 @@ Ce projet consiste à faire une API pour l'application ODKPointage de Orange Dig
    "genre": "Masculin",  
    "telephone": 2000063,  
    "email": "Al@gemail.com",  
-   "login": "inrrttr",  
-   "motDePass": "motDePdzass",  
+   "login": "Diarra",  
+   "motDePass": "azerty",
+   "imageURL": "www.image.com",  
    "etat": "ACTIVER",  
    "Type": "APPRENANT",  
    "promotion":{  
@@ -143,10 +144,11 @@ Ajout Utilisateur: Méthode => POST URL => localhost:8080/api/utilisateurs/ajout
    "genre": "Masculin",  
    "telephone": 2000063,  
    "email": "Al@gemail.com",  
-   "login": "inrrttr",  
-   "motDePass": "motDePdzass",  
+   "login": "Diarra",  
+   "motDePass": "azerty",  
    "etat": "ACTIVER",  
-   "Type": "APPRENANT",  
+   "Type": "APPRENANT",
+   "imageURL": "www.image.com", 
    "promotion":{  
       "id":1 //id de la prommotion  
    }  

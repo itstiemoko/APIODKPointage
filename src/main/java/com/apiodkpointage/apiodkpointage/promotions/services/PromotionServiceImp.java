@@ -29,21 +29,31 @@ public class PromotionServiceImp implements PromotionService {
         promotion.setAnnee(dateDebut);
         int debutMonth = promotion.getDateDebut().getMonthValue();
 
-
         int dateFin = promotion.getDateFin().getYear();
         int finMonth = promotion.getDateFin().getMonthValue();
+
+        int heureDebut = promotion.getHoraireDebutJournee().getHour();
+        int heureFin = promotion.getHoraireFinJournee().getHour();
+
         if (dateFin < dateDebut){
             return "La date de début doit être inférieur à la date de fin";
-        } else if(finMonth <= debutMonth){
+        }
+        else if(heureFin < heureDebut)
+        {
+            return "L'heure de début doit être inférieur à l'heure de fin";
+        }
+        else if(finMonth <= debutMonth)
+        {
             return "La date de début doit être inférieur à la date de fin";
         }
-        else{
-        int totalApprenant = promotion.getNombreFemmes()+ promotion.getNombreHommes();
-        promotion.setTotalApprenants(totalApprenant);
-        logServiceImp.addLogAdmin(administrateur,"L'admin avec l'id: " +idAdmin+" a ajouté la promotion " +promotion.getNom());
-         promotionRepository.save(promotion);
-            return " Promotion ajouter Avec succèss";
-    }
+        else
+        {
+            int totalApprenant = promotion.getNombreFemmes()+ promotion.getNombreHommes();
+            promotion.setTotalApprenants(totalApprenant);
+            logServiceImp.addLogAdmin(administrateur,"L'administrateur "+ administrateur.getPrenom()+ " "+administrateur.getNom()+ " a ajouté la promotion " +promotion.getNom());
+            promotionRepository.save(promotion);
+            return " Promotion ajoutée avec succès";
+        }
     }
 
     @Override
@@ -60,7 +70,7 @@ public class PromotionServiceImp implements PromotionService {
         modification.setNombreHommes(promotion.getNombreHommes());
         modification.setHoraireDebutJournee(promotion.getHoraireDebutJournee());
         modification.setHoraireFinJournee(promotion.getHoraireFinJournee());
-        logServiceImp.addLogAdmin(administrateur,"L'admin avec l'id: " + idAdmin + " a modifié la promotion " + promotion.getNom());
+        logServiceImp.addLogAdmin(administrateur,"L'administrateur " +administrateur.getPrenom()+ " "+administrateur.getNom() + " a modifié la promotion " + promotion.getNom());
         return promotionRepository.save(modification);
 
     }
